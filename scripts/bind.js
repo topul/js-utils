@@ -20,12 +20,19 @@ Function.prototype.mBind = function (oThis) {
   return fBound;
 };
 
-var obj = {};
+var obj = {
+  a: 1,
+};
 
-function foo(something) {
-  this.a = something;
+var obj2 = {
+  a: 2,
+};
+
+function foo() {
+  console.log(this.a);
 }
 
 var bar = foo.mBind(obj);
-bar(1);
-console.log(obj.a);
+var baz = bar.mBind(obj2);
+bar();
+baz();
